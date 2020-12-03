@@ -1,6 +1,6 @@
 const todoService = require('../service/todo.service.js')
 
-getAllTodos = (req, res) => {
+getAllTodos = async (req, res) => {
     try {
         const todos = todoService.getAllTodos()
         res.status(200).json({

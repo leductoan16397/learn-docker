@@ -5,9 +5,10 @@ const cors = require('cors')
 const path = require('path')
 const rfs = require('rotating-file-stream')
 const dotenv = require('dotenv')
+const { connectDatabase } = require('./configs/db.config')
 dotenv.config()
 
-
+connectDatabase()
 
 const PORT = process.env.PORT || 5000;
 const isProd = process.env.NODE_ENV === "production"
