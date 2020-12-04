@@ -1,6 +1,7 @@
-const todoService = require('../service/todo.service.js')
+import todoService from '../service/todo.service.js'
+const TodoControllers = {}
 
-getAllTodos = async (req, res) => {
+TodoControllers.getAllTodos = async (req, res) => {
     try {
         const todos = todoService.getAllTodos()
         res.status(200).json({
@@ -11,4 +12,4 @@ getAllTodos = async (req, res) => {
     }
 }
 
-module.exports = { getAllTodos }
+export default TodoControllers

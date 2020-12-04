@@ -1,7 +1,9 @@
-const TodoModel = require('../models/todo.model')
+import TodoModel from '../models/todo.model'
 
-getAllTodos = () => {
+const TodoService = {}
+
+TodoService.getAllTodos = () => {
     return TodoModel.find({});
 }
 
-module.exports = { getAllTodos }
+export default TodoService

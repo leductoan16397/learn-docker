@@ -1,5 +1,7 @@
-const express = require('express')
+import todoRouter from './todo.routes'
 
-const apiRoute = express()
 
-module.exports = apiRoute
+const routes = (app) => {
+    app.use('/todo', todoRouter)
+}
+export default routes

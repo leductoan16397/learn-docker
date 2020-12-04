@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
+// const mongoose = require('mongoose')
 
 const connectDatabase = () => {
     const mongoDbUrl = `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB_NAME}`
@@ -18,4 +19,4 @@ const connectDatabase = () => {
         })
 }
 
-module.exports = { connectDatabase }
+export default connectDatabase

@@ -1,5 +1,7 @@
 const express = require('express')
-const {getAllTodos}=require('../controllers/todo.controllers.js')
+import TodoControllers from '../controllers/todo.controllers.js'
 const router = express.Router()
 
-router.get("/",)
+router.get("/", (req, res) => TodoControllers.getAllTodos());
+
+export default router

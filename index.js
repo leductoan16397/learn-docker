@@ -1,11 +1,12 @@
-const express = require('express');
-const morgan = require('morgan')
-const helmet = require('helmet')
-const cors = require('cors')
-const path = require('path')
-const rfs = require('rotating-file-stream')
-const dotenv = require('dotenv')
-const { connectDatabase } = require('./configs/db.config')
+import express from 'express'
+import morgan from 'morgan'
+import helmet from 'helmet'
+import cors from 'cors'
+import path from 'path'
+import rfs from 'rotating-file-stream'
+import dotenv from 'dotenv'
+import connectDatabase from './configs/db.config.js'
+import routes from './src/routes/route.js';
 dotenv.config()
 
 connectDatabase()
@@ -14,6 +15,8 @@ const PORT = process.env.PORT || 5000;
 const isProd = process.env.NODE_ENV === "production"
 
 const app = express();
+
+const __dirname = path.resolve(path.dirname(decodeURI(new URL(import.meta.url).pathname)));
 
 const accessLogStream = rfs.createStream("access.log", {
     interval: '1d',
@@ -24,8 +27,7 @@ app.use(helmet())
 app.use(isProd ? morgan('combined', { stream: accessLogStream }) : morgan('combined'))
 app.use(cors())
 app.use(express.json())
-app.use('/api', require('./src/routes/route'))
-// console.log("asdasd",require('./src/routes/route'));
+app.use('/api', routes(app))
 
 
 
